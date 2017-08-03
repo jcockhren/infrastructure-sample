@@ -29,9 +29,9 @@ Consider the following directories:
 
 ### How Roles and Environments Work Together
 
-Assigning a role to node basically says, "Hey saltstack, could you provision this node with a state that this duty?"
+Assigning a role to node basically says, "Hey saltstack, could you provision this node with a state that matches this duty?"
 
-Salt then goes, "ok, will do. But hey, your state requires some data..."
+Saltstack then goes, "ok, will do. But hey, your state requires some data..."
 
 This is where environments come in. Environments define the data to be used in the state relative to the context of usage of a specific role/duty. For example, contrast configurating postgresql for use in production with configuring postgresql for use in CI/CD. The _role_ of two nodes may be the same but the _role_ will be configured differently.
 
