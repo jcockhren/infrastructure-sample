@@ -40,4 +40,4 @@ As one may expect in practice, nodes may be assigned multiple roles. For example
 
 ### How to assign a role to a node
 
-One uses Saltstack built-in mechanism for targeting pillar data in a `top.sls` file in the main pillar repo. Example: [jenkins AMI top.sls file](the://github.com/jcockhren/infrastructure-sample/blob/master/packer/jenkins/pillar/top.sls)
+One uses [Saltstack built-in mechanisms for targeting nodes](https://docs.saltstack.com/en/latest/topics/targeting/index.html). A `top.sls` file in the main pillar repo would define which nodes get which roles and environments. Example: [jenkins AMI top.sls file](the://github.com/jcockhren/infrastructure-sample/blob/master/packer/jenkins/pillar/top.sls)
