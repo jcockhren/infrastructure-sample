@@ -20,9 +20,11 @@ Consider the following directories:
 ## Roles and Environments
 
 **Environments** - subsets of your infrastructure. The subsets may overlap. (different from 'salt environments)
+
 **Roles** - a mapping between the act of provisioning a node to the assigned _duty_ of a node inside the infrastructure. (ex. nodes to be provisioned with database may be assigned a 'postgres' role)
 
 `salt/pillar/envs` - collections of environments
+
 `salt/pillar/roles` - collections of roles
 
 ### How Roles and Environments Work Together
