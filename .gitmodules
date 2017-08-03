@@ -1,0 +1,6 @@
+[submodule "salt/formulas/postgres-formula"]
+	path = salt/formulas/postgres-formula
+	url = git@github.com:sophicware/postgres-formula
+[submodule "salt/formulas/virtualenv-formula"]
+	path = salt/formulas/virtualenv-formula
+	url = git@github.com:saltstack-formulas/virtualenv-formula
