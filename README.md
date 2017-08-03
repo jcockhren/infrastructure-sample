@@ -12,9 +12,9 @@ This contains an examples:
 Consider the following directories:
 
 - `salt/forumlas` - a collection of saltstack formulas includes as submodules
-- `salt/pillar` - the pillar data that drives the infrastructure. Usually included as a sibmodule if in another repo.
-- `salt/states` - states and a special top file for using pillar data to dynamic determine states to call on a node.
-- `packer/jenkins` - an example of using the pre-existing infrastructure code to enable easy creation of jenkins nodes using Packer (w/ salt provisioning)
+- `salt/pillar` - data that drives the infrastructure. Usually included as a submodule
+- `salt/states` - states with a special top file for using data to dynamic determine states to call on a node. usually included as a submodule
+- `packer/jenkins` - example of using infrastructure code to enable easy creation of jenkins nodes using Packer (w/ salt provisioning)
 
 
 ## Roles and Environments
