@@ -1,2 +1,3 @@
 roles:
   - apt
+  - apt.upgrades
