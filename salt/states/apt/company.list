@@ -1,0 +1,1 @@
+deb [arch=all,amd64] https://s3.amazonaws.com/company-packages stable main
