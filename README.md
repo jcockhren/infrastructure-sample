@@ -36,3 +36,8 @@ Saltstack then goes, "ok, will do. But hey, your state requires some data..."
 This is where environments come in. Environments define the data to be used in the state relative to the context of usage of a specific role/duty. For example, contrast configurating postgresql for use in production with configuring postgresql for use in CI/CD. The _role_ of two nodes may be the same but the _role_ will be configured differently.
 
 As one may expect in practice, nodes may be assigned multiple roles. For example, a node that has a role for your web application and a role for installing & configuring nginx. This also means a node can use data from multiple environments.
+
+
+### How to assign a role to a node
+
+One uses Saltstack built-in mechanism for targeting pillar data in a `top.sls` file in the main pillar repo. Example: [jenkins AMI top.sls file](the://github.com/jcockhren/infrastructure-sample/blob/master/packer/jenkins/pillar/top.sls)
