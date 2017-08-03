@@ -1,0 +1,14 @@
+file_client: local
+use_master_when_local: False
+
+pillarenv: ami
+
+file_roots:
+    base:
+        - /srv/salt
+        - /srv/formula/postgres-formula
+
+pillar_roots:
+    ami:
+        - /tmp/pillar-pin
+        - /srv/pillar

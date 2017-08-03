@@ -1,0 +1,44 @@
+{
+    "variables": {
+        "login_username": "",
+        "login_password": ""
+    },
+    "builders": [
+        {
+            "type": "docker",
+            "commit": "true",
+            "pull": "true",
+            "login": "true",
+            "login_username": "{{user `login_username`}}",
+            "login_password": "{{user `login_password`}}",
+            "image": "ubuntu:16.04"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get install -y wget",
+                "wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i erlang-solutions_1.0_all.deb",
+                "apt-get update",
+                "apt-get install -y esl-erlang elixir"
+            ]
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "sophicware/elixir",
+                "tag": "0.1"
+            },
+            {
+                "type": "docker-push",
+                "login": "true",
+                "login_username": "{{user `login_username`}}",
+                "login_password": "{{user `login_password`}}"
+            }
+        ]
+    ]
+}

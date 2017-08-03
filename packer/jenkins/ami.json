@@ -1,0 +1,51 @@
+{
+    "variables": {
+        "vpc_id": "",
+        "vpc_subnet_id": ""
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "us-east-1",
+            "ami_name": "jenkins-2.3-6 {{timestamp}}",
+            "source_ami": "ami-01d08316",
+            "instance_type": "t1.micro",
+            "ssh_username": "ubuntu",
+            "vpc_id": "{{ user `vpc_id` }}",
+            "subnet_id": "{{ user `vpc_subnet_id` }}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir -p /tmp/pillar-pin"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/pillar/",
+            "destination": "/tmp/pillar-pin"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo mkdir -p /srv/formula",
+                "sudo git clone https://github.com/sophicware/postgres-formula /srv/formula/postgres-formula",
+                "sudo git clone https://github.com/saltstack-formulas/virtualenv-formula /srv/formula/virtualenv-formula",
+                "wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb",
+                "sudo apt-get update",
+                "sudo apt-get install -y python-virtualenv esl-erlang elixir openjdk-8-jre-headless",
+                "sudo apt-get install -y libgdal-dev ruby2.3-dev build-essential 'zlib*'",
+                "sudo gem install fpm --no-ri --no-rdoc",
+                "sudo gem install deb-s3 --no-ri --no-rdoc"
+            ]
+        },
+        {
+            "type": "salt-masterless",
+            "minion_config": "{{template_dir}}/minion",
+            "local_state_tree": "../../salt/states",
+            "local_pillar_roots": "../../salt/pillar"
+        }
+    ]
+}
